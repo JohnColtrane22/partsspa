@@ -21,21 +21,23 @@ import LoginService from '../../App/api/LoginService';
 const theme = createTheme();
 
 export default function Login() {
+  /** 
 const intitialLoginState = {
   username: '',
   password: ''
-};
+};*/
    const [values, setValues] = useState({
         username: '',
         password: ''
    });
-  const [login, setLogin] = useState<LoginData>(intitialLoginState);
+//  const [login, setLogin] = useState<LoginData>(intitialLoginState);
   const handleSubmit = (event: any) => {
     event.preventDefault();
-   // console.log(values);
+    console.log(values);
    // agent.Account.login(values);
  //  console.log(login);
-  // agent.Account.login(login);
+   agent.Account.login(values);
+   /** 
   var data = {
     username: login.username,
     password: login.password
@@ -52,13 +54,14 @@ const intitialLoginState = {
       .catch((e: Error) => {
         console.log(e);
       });
+      */
   };
   
 
   function handleInputChange(event: any) {
     const {name, value} = event.target;
-   // setValues({...values, [name]: value});
-   setLogin({ ...login, [name]: value });
+    setValues({...values, [name]: value});
+  // setLogin({ ...login, [name]: value });
   }
 
   return (
@@ -80,7 +83,7 @@ const intitialLoginState = {
               name="username"
               autoFocus
               onChange={handleInputChange}
-              value ={login.username}
+              value ={values.username}
             />
             <TextField
               margin="normal"
@@ -89,7 +92,7 @@ const intitialLoginState = {
               label="Password"
               type="password"
               onChange={handleInputChange}
-              value ={login.password}
+              value ={values.password}
             />
             <Button
               type="submit"
